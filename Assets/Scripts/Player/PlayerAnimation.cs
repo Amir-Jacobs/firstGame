@@ -4,7 +4,7 @@ public class PlayerAnimation : MonoBehaviour {
 
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private Animator animator;
-	[SerializeField] private PlayerJump playerJump;
+	[SerializeField] private PlayerGrounded playerGrounded;
 	[SerializeField] private PlayerMovement playerMovement;
 
 	private float previousVelocity;
@@ -15,7 +15,7 @@ public class PlayerAnimation : MonoBehaviour {
 
 	private void Update() {
 		// jumping or falling
-		if (!playerJump.isGrounded) {
+		if (!playerGrounded.isGrounded) {
 			JumpAnimation();
 
 			FallAnimation();
@@ -33,11 +33,11 @@ public class PlayerAnimation : MonoBehaviour {
 
 	private void ResetAnimations() {
 		// reset falling
-		if (animator.GetBool("isFalling") && playerJump.isGrounded)
+		if (animator.GetBool("isFalling") && playerGrounded.isGrounded)
 			animator.SetBool("isFalling", false);
 
 		// reset jumping
-		if (animator.GetBool("isJumping") && playerJump.isGrounded)
+		if (animator.GetBool("isJumping") && playerGrounded.isGrounded)
 			animator.SetBool("isJumping", false);
 
 		// reset running

@@ -4959,7 +4959,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.9
+  orthographic size: 5.43
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5301,7 +5301,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.010652065}
+  m_Offset: {x: 0, y: 0.0048214197}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5312,7 +5312,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.61869586}
+  m_Size: {x: 0.64, y: 0.63035715}
   m_EdgeRadius: 0
 --- !u!114 &2034555593
 MonoBehaviour:
@@ -5327,11 +5327,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundPosition: {fileID: 1969678953}
-  boxLength: 0.77
-  boxHeight: 0.02
+  boxLength: 0.74
+  boxHeight: 0.01
   whatIsGround:
     serializedVersion: 2
     m_Bits: 567
+  lastTimeGrounded: 0
   isGrounded: 0
 --- !u!114 &2034555594
 MonoBehaviour:
@@ -5348,7 +5349,7 @@ MonoBehaviour:
   rb: {fileID: 2034555596}
   highFriction: {fileID: 6200000, guid: ce55d14bdf028fe4499ca5a53b99b809, type: 2}
   noFriction: {fileID: 6200000, guid: b9d010762f889d1429bf481baed3181b, type: 2}
-  speed: 5
+  speed: 3.95
   calculatedMovement: 0
 --- !u!114 &2034555595
 MonoBehaviour:
@@ -5364,7 +5365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2034555596}
   playerGrounded: {fileID: 2034555593}
-  jumpForce: 18
+  jumpForce: 10
 --- !u!50 &2034555596
 Rigidbody2D:
   serializedVersion: 4
@@ -5444,7 +5445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034555591}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.17, y: -0.42000002, z: 0}
+  m_LocalPosition: {x: -4.169, y: -0.4196, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 1969678953}

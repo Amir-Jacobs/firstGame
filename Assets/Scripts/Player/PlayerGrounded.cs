@@ -8,6 +8,8 @@ public class PlayerGrounded : MonoBehaviour {
 
 	[SerializeField] private LayerMask whatIsGround;
 
+	public float lastTimeGrounded;
+
 	public bool isGrounded = false;
 
 	private void OnDrawGizmos() {
@@ -17,5 +19,7 @@ public class PlayerGrounded : MonoBehaviour {
 
 	private void Update() {
 		isGrounded = Physics2D.OverlapBox(groundPosition.position, new Vector2(boxLength, boxHeight), 0, whatIsGround);
+
+		if (isGrounded) lastTimeGrounded = Time.time;
 	}
 }

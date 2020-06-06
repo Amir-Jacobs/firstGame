@@ -25,14 +25,14 @@ public class PlayerJump : MonoBehaviour {
 	}
 
 	private void Jump() {
-		if (!playerGrounded.isGrounded) return;
+		if (!playerGrounded.isGrounded && (playerGrounded.lastTimeGrounded + .15f) < Time.time) return;
 
 		else if ((lastJump + .2f) > Time.time) return;
 
 		// player jumping too fast or player hasn't jumped in a while
 		else if (isJumping && (lastJump + .2f) > Time.time || (lastPress + .2f) < Time.time) return;
 
-		rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+		rb.velocity = Vector2.up * jumpForce;
 
 		lastJump = Time.time;
 	}

@@ -32,7 +32,7 @@ public class PlayerJump : MonoBehaviour {
 		// player jumping too fast or player hasn't jumped in a while
 		else if (isJumping && (lastJump + .2f) > Time.time || (lastPress + .2f) < Time.time) return;
 
-		rb.velocity = Vector2.up * jumpForce;
+		rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
 		lastJump = Time.time;
 	}

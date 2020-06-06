@@ -1,44 +1,38 @@
 ﻿using UnityEngine;
 
+
 public class PlayerJump : MonoBehaviour {
 
 	[SerializeField] private Rigidbody2D rb;
-	[SerializeField] private float jumpForce;
+	[SerializeField] private PlayerGrounded playerGrounded;
 
 	private bool isJumping = false;
-	private bool doubleJump = false;
 	private float lastJump;
 
-	public LayerMask whatIsGround;
-	public Transform groundCheck;
+	public float jumpForce;
 
-	public float groundRadius = 0.1f;
-	public bool isGrounded = false;
+	private float lastPress;
 
 	private void Update() {
-		isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-
 		isJumping = Input.GetAxisRaw("Vertical") > 0;
+
+		if (isJumping)
+			lastPress = Time.time;
 	}
 
 	private void FixedUpdate() {
-		if (!isGrounded && isJumping && !doubleJump && lastJump + .4f < Time.time) {
-			doubleJump = true;
-			Jump();
-		}
-
-		if (isGrounded && isJumping && lastJump + .2f < Time.time)
-			Jump();
-
-		if (isGrounded && doubleJump) doubleJump = false;
+		Jump();
 	}
 
 	private void Jump() {
+		if (!playerGrounded.isGrounded && (playerGrounded.lastTimeGrounded + .15f) < Time.time) return;
 
-		if (doubleJump)
-			rb.AddForce(new Vector2(0, jumpForce * 1.2f), ForceMode2D.Impulse);
-		else
-			rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+		else if ((lastJump + .2f) > Time.time) return;
+
+		// player jumping too fast or player hasn't jumped in a while
+		else if (isJumping && (lastJump + .2f) > Time.time || (lastPress + .2f) < Time.time) return;
+
+		rb.velocity = Vector2.up * jumpForce;
 
 		lastJump = Time.time;
 	}

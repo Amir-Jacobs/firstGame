@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float calculatedMovement;
 
+	// TODO: change script to move right automatically
+
 	void Update() {
         x = Input.GetAxisRaw("Horizontal");
 	}

@@ -2,21 +2,20 @@
 
 public class PlayerGrounded : MonoBehaviour {
 
-	public Transform groundCheck;
+	[SerializeField] private Transform groundPosition;
+	[SerializeField] private float boxLength;
+	[SerializeField] private float boxHeight;
 
-	public LayerMask whatIsGround;
-	public float groundRadius = 0.1f;
+	[SerializeField] private LayerMask whatIsGround;
 
 	public bool isGrounded = false;
 
-	private float time;
+	private void OnDrawGizmos() {
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(groundPosition.position, new Vector2(boxLength, boxHeight));
+	}
 
 	private void Update() {
-		if (!Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround) &&
-			time + .5f < Time.time)
-			isGrounded = false;
-
-		else if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround))
-			isGrounded = true;
+		isGrounded = Physics2D.OverlapBox(groundPosition.position, new Vector2(boxLength, boxHeight), 0, whatIsGround);
 	}
 }

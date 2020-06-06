@@ -6,10 +6,11 @@ public class PlayerDust : MonoBehaviour {
 
 	public ParticleSystem dust;
 
-	private bool isMoving = false;
-
 	private void Update() {
-		if (!dust.isPlaying && (rb.velocity.x > 0 || rb.velocity.x < 0))
+		if (rb.velocity.x > 0)
 			dust.Play();
+
+		else
+			dust.Stop();
 	}
 }

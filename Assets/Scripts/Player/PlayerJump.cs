@@ -11,18 +11,27 @@ public class PlayerJump : MonoBehaviour {
 
 	public float jumpForce;
 
+	private float lastPress;
+
 	private void Update() {
 		isJumping = Input.GetAxisRaw("Vertical") > 0;
+
+		if (isJumping)
+			lastPress = Time.time;
 	}
 
 	private void FixedUpdate() {
-		if (isJumping &&
-			playerGrounded.isGrounded &&
-			(lastJump + .2f) < Time.time)
-			Jump();
+		Jump();
 	}
 
 	private void Jump() {
+		if (!playerGrounded.isGrounded) return;
+
+		else if ((lastJump + .2f) > Time.time) return;
+
+		// player jumping too fast or player hasn't jumped in a while
+		else if (isJumping && (lastJump + .2f) > Time.time || (lastPress + .2f) < Time.time) return;
+
 		rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
 		lastJump = Time.time;
